@@ -1,4 +1,8 @@
-#to prove my code is not evil, here is the source code
+#Since this code was written to parse an expense report of a webpage.
+#I think you should get to see what my code actually does with your info.
+#It is designed to takes the text off a webpage, filter out web artifacts,
+#and output the table from the webpage as a spreadsheet compatible .csv file.
+#No funny business: no accounts, no tracking, no selling
 CSV = ""
 
 def parse(l, ignore = []):
@@ -75,9 +79,7 @@ def doFile(file, ignoreList = []):
         ignoreString = "\nIgnoring: "
         for i in ignoreList:
             ignoreString += i + ',  '
-    #print()
-    #print("Total for", file, "->", "$" + str(addup(p)), )
-    #print("========================================")
+
 def multiInput():
     #s = "1/1 LUCKYLAND PLAYINGCARDS NT 1,001.23"
 
@@ -97,7 +99,6 @@ def multiInput():
     return s
 
 def main():
-    #write input to txt file called foo.bar
     doFile(multiInput())
     
 
@@ -108,4 +109,3 @@ def main():
     print("Written to 'out.csv' for importing to excel")
 
 main()
-
