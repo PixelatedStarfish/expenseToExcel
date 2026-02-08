@@ -1,4 +1,4 @@
-import os
+#to prove my code is not evil, here is the source code
 CSV = ""
 
 def parse(l, ignore = []):
@@ -108,3 +108,4 @@ def main():
     print("Written to 'out.csv' for importing to excel")
 
 main()
+
