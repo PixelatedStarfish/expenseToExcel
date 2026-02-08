@@ -1,4 +1,7 @@
-So this is a document parser for expense tables. You might be thinking "Most banks will let you download records directly to your computer as a csv. Why do you need this???" Well some banks have not heard of csv files and just give you a webpage and say "good luck". So, I wrote a parser in python. Copy the content of the page to the program input and my parser will give you a csv you can put in excel. This readme also doubles as a test file!
+So this is a document parser for expense tables. You might be thinking "Most banks will let you download records directly to your computer as a csv.
+Why do you need this???" Well some banks have not heard of csv files and just give you a webpage and say "good luck". 
+So, I wrote a parser in python. Copy the content of the page to the program input and my parser will give you a csv you can put in excel. 
+This readme also doubles as a test file!
 
 The webpage is pretty noisy too. It includes a lot of text that is not a record of your card activity. Stuff like:
 
