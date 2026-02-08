@@ -1,6 +1,36 @@
 So this is a document parser for expense tables. You might be thinking "Most banks will let you download records directly to your computer as a csv. Why do you need this???" Well some banks have not heard of csv files and just give you a webpage and say "good luck". So, I wrote a parser in python. Copy the content of the page to the program input and my parser will give you a csv you can put in excel. This readme also doubles as a test file!
 
-The webpage is pretty noisy too. It includes a lot of text that is not a record of your card activity. Stuff like:
+Disclaimer: This program parses text to write a table to spreadsheet. It is not intended to replace a more secure program, or safe practice for handling personal information. Do not run your banking records through random programs you find online.
+
+I encourage you to run my program on the contents of this text file as a test. 
+Please run the test and take note of the License before parsing your sensitive information.
+Also, please be sure to back up important files before running programs on them.  
+This is the result you should expect after the test (without the X on each line):
+ 
+X 1/1,LUCKYLAND PLAYINGCARDS NT,12.34
+X 1/1,LUCKYLAND PLAYINGCARDS NT,34.21
+X 1/1,LUCKYLAND PLAYINGCARDS NT,23.33
+X 1/1,LUCKYLAND PLAYINGCARDS NT,21.12
+X 1/1,LUCKYLAND PLAYINGCARDS NT,11.11
+X 1/1,LUCKYLAND PLAYINGCARDS NT,3.14
+X 1/1,LUCKYLAND PLAYINGCARDS NT,12.25
+X 1/1,LUCKYLAND PLAYINGCARDS NT,32.23
+X 1/1,LUCKYLAND PLAYINGCARDS NT,3.22
+X 1/1,LUCKYLAND PLAYINGCARDS NT,11.23
+X 1/1,LUCKYLAND PLAYINGCARDS NT,12.34
+X 1/1,LUCKYLAND PLAYINGCARDS NT,34.21
+X 1/1,LUCKYLAND PLAYINGCARDS NT,23.33
+X 1/1,LUCKYLAND PLAYINGCARDS NT,21.12
+X 1/1,LUCKYLAND PLAYINGCARDS NT,11.11
+X 1/1,LUCKYLAND PLAYINGCARDS NT,3.14
+X 1/1,LUCKYLAND PLAYINGCARDS NT,12.25
+X 1/1,LUCKYLAND PLAYINGCARDS NT,32.23
+X 1/1,LUCKYLAND PLAYINGCARDS NT,23.11
+X 1/1,LUCKYLAND PLAYINGCARDS NT,23.23
+X Total,->,360.25
+
+If you get something else, someone has tampered with this program, and you should not use it.
+Ok, good? 
 
 Hey you may be eligible for a promotion from bank!!! Is that awesome?!??!?!? oh yeah!!!
 
