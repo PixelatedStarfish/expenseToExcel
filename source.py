@@ -1,4 +1,4 @@
-#Since this code was written to parse an expense report of a webpage.
+#Since this code was written to parse an expense report off a webpage.
 #I think you should get to see what my code actually does with your info.
 #It is designed to takes the text off a webpage, filter out web artifacts,
 #and output the table from the webpage as a spreadsheet compatible .csv file.
