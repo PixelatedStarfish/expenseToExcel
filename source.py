@@ -5,13 +5,22 @@
 #No funny business: no accounts, no tracking, no selling
 CSV = ""
 
+def charFilter(s):
+    banned = ",=|" #reserved chars are deleted from the file
+
+    for c in banned:
+        s = s.replace(c, " ")
+
+    s = s.replace("/", "-")#all dates get '-' as delimiter
+    return s
+    
+
 def parse(l, ignore = []):
-    #print(lines)
     out = []
-    l = l.replace(",", "") #commas are evil
+    l = charFilter(l)
         #print(l)
     l = lineSplitter(l)
-    if l == None: #kip noise
+    if l == None or l[0] == "<>": #skip noise and stuff marked "<>" 
         return
     if not ignores(l[1], ignore):
         liner = []
@@ -28,24 +37,27 @@ def ignores(line, ignore):
     return False
 
 def lineSplitter(line):
-    #print(line)
-    if not line[0:1].isdigit():
+    if (not '-' in line[0:7]): #dates get a '-' as a delimiter. 
         return None #no date field means noise
-    dateSliceEnd = 0
-    priceSliceStart = len(line) -1
 
-    while line[dateSliceEnd] != " ":
-        dateSliceEnd += 1
+    try:
+        dateSliceEnd = 0
+        priceSliceStart = len(line) -1
+
+        while line[dateSliceEnd] != " ":
+            dateSliceEnd += 1
         
-    while line[priceSliceStart] != " ":
-        priceSliceStart -=1
+        while line[priceSliceStart] != " ":
+            priceSliceStart -=1
 
-    slicer1 = line[0:dateSliceEnd]
-    slicer2 = line[dateSliceEnd:priceSliceStart]
-    slicer3 = line[priceSliceStart:len(line)]
+        slicer1 = line[0:dateSliceEnd]
+        slicer2 = line[dateSliceEnd:priceSliceStart]
+        slicer3 = line[priceSliceStart:len(line)]
 
 
-    return [slicer1, slicer2, slicer3]
+        return [slicer1, slicer2, slicer3]
+    except IndexError:
+        return None #if some gobbledygook starts with a digit, prevent a crash 
 
 #tallies up the prices, with an array for ignoring specific substrings
 def addup(lines):
@@ -53,7 +65,12 @@ def addup(lines):
     result = 0
 
     for line in lines:
-        result += float(line[2]) #adds up prices
+        #print(line)
+        try:
+            result += float(line[2]) #adds up prices
+        except ValueError:
+            print("Bad parse on \"" + line[2] + "\". Format table rows with DATE, TRANSACTION, PRICE")
+            exit(1)
     out = round(result, 2) #rounding off noise form floating point math
 
     return out
@@ -66,9 +83,7 @@ def doFile(file, ignoreList = []):
         q = parse(line, ignoreList)
         if not q == None:
             p.append(q)
-    p.append(["Total", "->", str(addup(p))])
-    #print("\nFile", file + ":")
-    #print()
+    p.append(["Total", "  ", str(addup(p))])
     delim = "\t"
     for line in p:
         print(line[0] + delim + line[1] + delim + line[2])
@@ -83,7 +98,12 @@ def doFile(file, ignoreList = []):
 def multiInput():
     #s = "1/1 LUCKYLAND PLAYINGCARDS NT 1,001.23"
 
-    print("Paste your tables here to get a .csv file for a spreadsheet.\nLines that do not start with a digit will be ignored to filter out noise.\nEnter a double colon \"::\" to continue.\n>\n")
+    print("Paste your tables here to get a .csv file for a spreadsheet."\
+          + "\nLines that do not start with a digit will be ignored to filter out noise."\
+          + "\nPlease note that each row of a table needs to be formatted as:"\
+          +"\nDATE, TRANSACTION, PRICE\n"\
+          +"with space between fields."\
+          +"\nEnter a double colon \"::\" to continue.\n>")
     contents = []
     while True:
         try:
@@ -106,6 +126,6 @@ def main():
     f = open("out.csv", "w")
     f.write(CSV)
     f.close()
-    print("Written to 'out.csv' for importing to excel")
+    print("Table written to 'out.csv' for importing to a spreadsheet.")
 
 main()
