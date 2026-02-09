@@ -99,7 +99,7 @@ def multiInput():
     #s = "1/1 LUCKYLAND PLAYINGCARDS NT 1,001.23"
 
     print("Paste your tables here to get a .csv file for a spreadsheet."\
-          + "\nLines that do not start with a digit will be ignored to filter out noise."\
+          + "\nLines that do not start with a date will be ignored to filter out noise."\
           + "\nPlease note that each row of a table needs to be formatted as:"\
           +"\nDATE, TRANSACTION, PRICE\n"\
           +"with space between fields."\
